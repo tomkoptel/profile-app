@@ -1,6 +1,8 @@
 apply plugin: "com.android.application"
 apply plugin: "kotlin-android"
 apply plugin: "kotlin-android-extensions"
+apply plugin: "kotlinx-serialization"
+apply plugin: "kotlin-kapt"
 
 android {
     compileSdkVersion 29
@@ -8,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.olderwold.profile"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -24,8 +26,12 @@ android {
     }
 
     sourceSets {
-        getByName("main").java.srcDirs("src/main/kotlin")
-        getByName("test").java.srcDirs("src/test/kotlin")
+        getByName("main").java.srcDirs("src/main/kotlin", "src/main/kotlinX")
+        getByName("test").java.srcDirs("src/test/kotlin", "src/test/kotlinX")
+    }
+
+    packagingOptions {
+        exclude("META-INF/*.kotlin_module")
     }
 }
 
@@ -36,17 +42,44 @@ dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     // Use the Kotlin JDK 8 standard library.
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    // Used by Ktor + KotlinX serialization
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
 
     implementation("androidx.navigation:navigation-fragment-ktx")
     implementation("androidx.navigation:navigation-ui-ktx")
     implementation("com.google.android.material:material")
 
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx")
+
     implementation("androidx.constraintlayout:constraintlayout")
+
+    // Network layer Ktor + Kotlin Serialization
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
+
+    implementation("io.ktor:ktor-client-core-jvm")
+    implementation("io.ktor:ktor-client-serialization-jvm")
+    implementation("io.ktor:ktor-client-okhttp")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
+
+    // Java 8 Time API Backport
+    implementation("com.jakewharton.threetenabp:threetenabp")
+
+    implementation("com.airbnb.android:lottie")
+
+    implementation("com.github.bumptech.glide:glide")
+    kapt("com.github.bumptech.glide:compiler:4.11.0")
 
     // Use the Kotlin test library.
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    // Allows to Mock away network calls to expected responses
+    testImplementation("io.ktor:ktor-client-mock-jvm")
+    // Mockk is much more friendly to Kotlin
+    testImplementation("io.mockk:mockk")
+    testImplementation("io.mockk:mockk-dsl")
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {

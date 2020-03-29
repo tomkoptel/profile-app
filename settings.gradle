@@ -1,2 +1,9 @@
 include(":app", ":platform")
 rootProject.name = "Profile"
+
+buildCache {
+    local {
+        directory = new File(rootDir, 'build-cache')
+        removeUnusedEntriesAfterDays = 30
+    }
+}
