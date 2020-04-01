@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="primary">#3F51B5</color>
-  <color name="primary_dark">#303F9F</color>
-  <color name="accent">#FF5722</color>
-  <color name="primary_text">#212121</color>
-  <color name="secondary_text">#757575</color>
+  <color name="brand1_light">#847128</color>
+  <color name="brand1_dark">#988642</color>
+
+  <color name="brand2_light">#394655</color>
+  <color name="brand3_light">#a6afb9</color>
+
+  <color name="brand4_light">#ffabab</color>
+  <color name="brand5_light">#d17a1d</color>
+  <color name="brand6_light">#0091ff</color>
+
+  <color name="button_pressed_dark">#635316</color>
+  <color name="background_dark">#000000</color>
+  <color name="background_light">#ffffff</color>
+  <color name="grey_dark">#1d1d1d</color>
+  <color name="grey_light">#fafafa</color>
+  <color name="overlay">#66000000</color>
+  <color name="text_placeholder">#8e8e8e</color>
 </resources>

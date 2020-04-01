@@ -2,4 +2,6 @@
     <string name="app_name">Profile</string>
     <string name="avatar">Avatar</string>
     <string name="frameworks">Frameworks</string>
+    <string name="show_card">Show Card</string>
+    <string name="title_of_page">Title of Page</string>
 </resources>

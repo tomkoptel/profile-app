@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.olderwold.profile"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -48,6 +48,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx")
     implementation("androidx.navigation:navigation-ui-ktx")
     implementation("com.google.android.material:material")
+    implementation("androidx.viewpager2:viewpager2")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx")
 

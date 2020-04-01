@@ -5,6 +5,6 @@
     app:startDestination="@+id/splash_screen">
     <fragment
         android:id="@+id/splash_screen"
-        android:name="com.olderwold.profile.splash.SplashFragment"
+        android:name="com.olderwold.profile.details.DetailsFragment"
         tools:layout="@layout/fragment_splash" />
 </navigation>
