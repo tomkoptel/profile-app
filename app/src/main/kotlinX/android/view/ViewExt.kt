@@ -2,6 +2,8 @@
 
 package android.view
 
+import android.app.Activity
+import android.content.ContextWrapper
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.TypedValue
@@ -48,4 +50,19 @@ fun View.getTintedDrawableFrom(@DrawableRes drawableRes: Int, @ColorRes colorRes
     val tintColor = ContextCompat.getColor(context, colorRes)
     val drawable = ContextCompat.getDrawable(context, drawableRes)
     return drawable?.apply { DrawableCompat.setTint(this, tintColor) }
+}
+
+
+/**
+ * Searches for the matching context ignoring reference that implement [ContextWrapper].
+ */
+internal fun View.activity(): Activity? {
+    var context = context
+    while (context is ContextWrapper) {
+        if (context is Activity) {
+            return context
+        }
+        context = context.baseContext
+    }
+    return null
 }
